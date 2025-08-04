@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Minimalist Clock</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: transparent; /* dark grey */
+      color: white;
+      font-family: sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      flex-direction: column;
+      font-size: 2em;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div id="date">Loading date...</div>
+  <div id="time">Loading time...</div>
+
+  <script>
+    function updateClock() {
+      const now = new Date();
+
+      // Format: "Monday, August 4, 2025"
+      const dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+      const dateStr = now.toLocaleDateString(undefined, dateOptions);
+
+      // Format: "10:35:00 AM"
+      const timeStr = now.toLocaleTimeString(undefined, {
+        hour: 'numeric',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: true
+      });
+
+      document.getElementById('date').textContent = dateStr;
+      document.getElementById('time').textContent = timeStr;
+    }
+
+    updateClock();
+    setInterval(updateClock, 1000);
+  </script>
+</body>
+</html>
