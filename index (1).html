@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Minimal Clock</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: #1e1e1e; /* dark gray */
+      color: white;
+      font-family: sans-serif;
+      width: 975px;
+      height: 108px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 2em;
+      overflow: hidden;
+    }
+    #clock {
+      white-space: nowrap;
+    }
+  </style>
+</head>
+<body>
+  <div id="clock">Loading...</div>
+
+  <script>
+    function updateClock() {
+      const now = new Date();
+
+      // Format time: "10:25:34 AM"
+      const timeStr = now.toLocaleTimeString(undefined, {
+        hour: 'numeric',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: true
+      });
+
+      // Format date: "Monday, August 4, 2025"
+      const dateStr = now.toLocaleDateString(undefined, {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      });
+
+      document.getElementById('clock').textContent = `${timeStr} — ${dateStr}`;
+    }
+
+    updateClock();
+    setInterval(updateClock, 1000);
+  </script>
+</body>
+</html>
